@@ -5,6 +5,7 @@ if [ ! -d /.composer ]; then
 fi
 
 chmod -R ugo+rw /.composer
+chown -R nobody:nobody /var/www/html/storage
 
 /usr/local/bin/composer install --no-interaction --no-ansi --no-progress
 
