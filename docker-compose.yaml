@@ -6,7 +6,9 @@ services:
       dockerfile: Dockerfile
       context: .
     volumes:
-      - .:/var/www/html
+      - ".:/var/www/html"
+    entrypoint:
+      - "start-container"
     ports:
       - "8000:80"
     networks:

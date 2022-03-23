@@ -28,12 +28,9 @@ COPY .docker/supervisord.ini /etc/supervisor.d/supervisord.ini
 # Se agrega la configuración recomendada por laravel para php
 COPY .docker/php.ini /etc/php/8.1/cli/conf.d/99-laravel.ini
 
-# Se instalan las dependencias de composer
-COPY . .
-RUN composer install
+COPY .docker/start-container /usr/local/bin/start-container
+RUN chmod +x /usr/local/bin/start-container
 
-# Se configura la propiedad de la carpeta de almacenamiento publico
-RUN chown -R nobody:nobody /var/www/html/storage
-
-EXPOSE 80
-CMD ["supervisord", "-c", "/etc/supervisor.d/supervisord.ini"]
+# Se instala y configura bash
+RUN apk add bash
+RUN sed -i 's/bin\/ash/bin\/bash/g' /etc/passwd
