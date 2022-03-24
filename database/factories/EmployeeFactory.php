@@ -24,7 +24,7 @@ class EmployeeFactory extends Factory
             'phone_number' => $this->faker->phoneNumber(),
             'birth_date' => $this->faker->dateTimeThisCentury()->format('Y-m-d'),
             'hiring_date' => $this->faker->dateTimeThisDecade()->format('Y-m-d'),
-            'salary' => $this->faker->randomFloat(2, 600, 5000)
+            'salary' => $this->faker->randomFloat(2, 600, 5000),
         ];
     }
 }
