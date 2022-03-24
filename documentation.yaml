@@ -1,0 +1,165 @@
+swagger: "2.0"
+info:
+  title: Polimundo backend
+  description: Polimundo backend
+  version: 1.0.0
+host: localhost:8000
+basePath: "/api"
+schemes:
+  - http
+paths:
+  /companies:
+    get:
+      tags:
+        - Compañías
+      summary: "Lista todas las compañías registradas"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Operación exitosa"
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "#/definitions/Company"
+  /companies/{company}:
+    get:
+      tags:
+        - Compañías
+      summary: "Muestra una compañía especifica"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "company"
+          type: integer
+          description: "Id de la compañía"
+          required: true
+        - in: "query"
+          name: "include"
+          description: ""
+          type: array
+          items:
+            enum:
+              - "employees"
+          required: false
+      responses:
+        200:
+          description: "La compañía existe"
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                $ref: "#/definitions/CompanyWithEmployees"
+        404:
+          description: 'La compañía no existe'
+  /employees:
+    get:
+      summary: "Lista todos los empleados registrados"
+      tags:
+        - Empleados
+      produces:
+        - 'application/json'
+      responses:
+        200:
+          description: "Operación exitosa"
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/Employee'
+  /employees/{employee}:
+    get:
+      summary: 'Muestra un empleado especifico'
+      tags:
+        - Empleados
+      parameters:
+        - in: path
+          name: employee
+          type: integer
+          required: true
+        - in: query
+          name: include
+          type: array
+          items:
+            enum:
+              - company
+          required: false
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: 'El empleado existe'
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                $ref: '#/definitions/EmployeeWithCompany'
+        404:
+          description: 'El empleado no existe'
+definitions:
+  Company:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      address:
+        type: string
+        format: "address"
+      support_email:
+        type: string
+        format: "email"
+      support_phone:
+        type: string
+      foundation:
+        type: object
+        properties:
+          date:
+            type: string
+            format: "date"
+          age:
+            type: integer
+      price:
+        type: number
+  CompanyWithEmployees:
+    allOf:
+      - $ref: '#/definitions/Company'
+      - type: object
+        properties:
+          employees:
+            type: array
+            items:
+              $ref: '#/definitions/Employee'
+  Employee:
+    type: object
+    properties:
+      name:
+        type: string
+      lastname:
+        type: string
+      email:
+        type: string
+      phone_number:
+        type: string
+      birth_date:
+        type: string
+        format: "date"
+      hiring_date:
+        type: string
+        format: "date"
+  EmployeeWithCompany:
+    allOf:
+      - $ref: '#/definitions/Employee'
+      - type: object
+        properties:
+          company:
+            $ref: '#/definitions/Company'
