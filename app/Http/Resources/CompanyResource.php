@@ -25,6 +25,7 @@ class CompanyResource extends JsonResource
                 'age' => $this->foundation_date->age,
             ],
             'price' => $this->price,
+            'employees' => EmployeeResource::collection($this->whenLoaded('employees'))
         ];
     }
 }
