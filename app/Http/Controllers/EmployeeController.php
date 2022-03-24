@@ -21,7 +21,6 @@ class EmployeeController extends Controller
         return EmployeeResource::collection($collection);
     }
 
-
     /**
      * Display the specified resource.
      *
