@@ -15,10 +15,10 @@ class Company extends Model
         'support_email',
         'support_phone',
         'foundation_date',
-        'price'
+        'price',
     ];
 
     protected $casts = [
-        'foundation_date' => 'date'
+        'foundation_date' => 'date',
     ];
 }

@@ -23,7 +23,7 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Company $company
+     * @param  \App\Models\Company  $company
      * @return \Illuminate\Contracts\Support\Responsable
      */
     public function show(Company $company): Responsable
