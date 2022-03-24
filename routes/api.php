@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('companies', \App\Http\Controllers\CompanyController::class, ['only' => ['index', 'show']]);
+Route::resource('employees', \App\Http\Controllers\EmployeeController::class, ['only' => ['index', 'show']]);
