@@ -24,7 +24,7 @@ class EmployeeResource extends JsonResource
             'birth_date' => $this->birth_date->format('Y-m-d'),
             'hiring_date' => $this->hiring_date->format('Y-m-d'),
             'salary' => $this->salary,
-            'company' => new CompanyResource($this->whenLoaded('company'))
+            'company' => new CompanyResource($this->whenLoaded('company')),
         ];
     }
 }
