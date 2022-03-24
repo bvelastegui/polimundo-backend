@@ -1,6 +1,6 @@
 # Requerimientos
 
-- Docker
+- Docker (WSL2, MacOS, Linux)
 - Docker compose
 
 ## Instrucciones
@@ -11,13 +11,9 @@
    ```
 2. Ejecutar docker compose
    ```bash
-   docker compose up -d
+   docker compose up -d --build
    ```
-3. Ejecutar las migraciones
-   ```bash
-   docker compose exec laravel artisan migrate -n
-   ```
-4. Acceder a [http://localhost:8000]()
+3. Acceder a [http://localhost:8000]()
 
 # Tareas del reto
 
