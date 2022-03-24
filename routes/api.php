@@ -20,3 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('companies', \App\Http\Controllers\CompanyController::class, ['only' => ['index', 'show']]);
 Route::resource('employees', \App\Http\Controllers\EmployeeController::class, ['only' => ['index', 'show']]);
+Route::get('documentation.yaml', function () {
+    return response()->file(base_path('documentation.yaml'));
+})->name('api.documentation');
